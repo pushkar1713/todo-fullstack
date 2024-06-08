@@ -12,7 +12,7 @@ app.post("/todo", async function (req, res) {
   const updatedPayload = req.body;
   const parsedPayload = createTodo.safeParse(updatedPayload);
   if (!parsedPayload.success) {
-    res.status(411).json({
+    res.status(400).json({
       msg: "you send the wrong input",
     });
     return;
@@ -40,14 +40,14 @@ app.put("/completed", async function (req, res) {
   const updatedPayload = req.body;
   const parsedPayload = updateTodo.safeParse(updatedPayload);
   if (!parsedPayload.success) {
-    res.status(411).json({
+    res.status(400).json({
       msg: "you send the wrong input",
     });
     return;
   }
-  await todo.update(
+  await todo.findOneAndUpdate(
     {
-      _id: req.body.id,
+      _id: req.body._id,
     },
     {
       completed: true,
