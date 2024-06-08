@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       <CreateTodo />
+      <h1 className="text-center font-extrabold text-xl">TODOS</h1>
       <Todo todos={todos} />
     </>
   );
